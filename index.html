@@ -205,57 +205,34 @@ Descubre nuestro servicio de primera clase hoy mismo. ¡Tu viaje de lujo comienz
             
         <div class="row content">
           <div class="col-lg-6">
-        
-            <!-- Form 1 
-            <form id="rentalForm">
-        <label for="startDate">Fecha y Hora de Inicio:</label>
-        <input type="datetime-local" id="startDate" name="startDate" required><br><br>
+        <form id="rentaForm">
+            <label for="categoria">Seleccione la categoría del auto:</label>
+            <select id="categoria" required>
+                <option value="1">Sedán - $15/hora</option>
+                <option value="2">SUV - $20/hora</option>
+                <option value="3">Camioneta - $25/hora</option>
+                <option value="4">Convertible - $30/hora</option>
+                <option value="5">Minivan - $18/hora</option>
+                <option value="6">Deportivo - $35/hora</option>
+                <option value="7">Económico - $12/hora</option>
+            </select>
 
-        <label for="endDate">Fecha y Hora de Fin:</label>
-        <input type="datetime-local" id="endDate" name="endDate" required><br><br>
+            <label for="startDate">Seleccione la fecha y hora de inicio:</label>
+            <input type="datetime-local" id="startDate" name="startDate" required>
 
-        <label for="carType">Tipo de Auto:</label>
-        <select id="carType" name="carType">
-            <option value="economy">Económico</option>
-            <option value="standard">Estándar</option>
-            <option value="luxury">Lujo</option>
-        </select><br><br>
+            <label for="endDate">Seleccione la fecha y hora de finalización:</label>
+            <input type="datetime-local" id="endDate" name="endDate" required>
 
-        <button type="button" onclick="calculateCost()">Calcular Costo</button>
-    </form>
+            <label for="kilometraje">Seleccione una opción:</label>
+            <select id="kilometraje" required>
+                <option value="limitado">Con límite de kilometraje (120km)</option>
+                <option value="ilimitado">Sin límite de kilometraje</option>
+            </select>
 
-    <h2 id="result"></h2>-->
-          <!-- ======= Form 2 ======= -->
-         
-         
-    <form id="rental-form">
-         
-        <label for="car-category">Categoría de Auto:</label>
-        <select id="car-category" required>
-            <option value="100">Económico - $100</option>
-            <option value="150">Compacto - $150</option>
-            <option value="200">Mediano - $200</option>
-            <option value="250">Grande - $250</option>
-            <option value="300">SUV - $300</option>
-            <option value="350">De lujo - $350</option>
-            <option value="400">Deportivo - $400</option>
-        </select>
-
-        <label for="rental-days">Número de días:</label>
-        <input type="number" id="rental-days" min="1" required>
-
-        <button type="button" onclick="calculateRental()">Calcular</button>
-    </form>
-
-    <div id="result">
-        <h4>Resultado</h4>
-        <h3><p id="total-cost">Costo total: $0</p></h3>
-        <h5><a href="#">A partir del 3er día descuento del 30%</a></h5>
+            <button type="submit">Calcular Renta</button>
+        </form>
     </div>
-    
-    
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0">
+    <div class="col-lg-6 pt-4 pt-lg-0">
            <h3>REQUISITOS</h3>
             <p>
              <ul> 
@@ -279,6 +256,9 @@ Descubre nuestro servicio de primera clase hoy mismo. ¡Tu viaje de lujo comienz
                 <a class="cta-btn align-middle" href="#contact">Bases y Condiciones</a>
                 </div>
           </div>
+    
+          </div>
+          
           
         </div>
 
@@ -512,26 +492,7 @@ Descubre nuestro servicio de primera clase hoy mismo. ¡Tu viaje de lujo comienz
               <!--<a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>-->
             </div>
           </div>
-<!--
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>-->
-<!--
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>-->
+
 
         </div>
 
