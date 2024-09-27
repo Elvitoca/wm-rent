@@ -1,58 +1,40 @@
-//function calculateCost() {
-    // Obtener valores del formulario
-    //const startDate = new Date(document.getElementById('startDate').value);
-//    const endDate = new Date(document.getElementById('endDate').value);
-  //  const carType = document.getElementById('carType').value;
+document.getElementById('rentaForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-    //if (isNaN(startDate.getTime()) || isNaN(endDate.getTime()) || startDate >= endDate) {
-    //    alert('Por favor, ingrese fechas válidas y asegúrese de que la fecha de fin sea posterior a la de inicio.');
-  //      return;
-//    }
+    const categoria = document.getElementById('categoria').value;
+    const startDate = new Date(document.getElementById('startDate').value);
+    const endDate = new Date(document.getElementById('endDate').value);
+    const kilometraje = document.getElementById('kilometraje').value;
 
-    // Calcular la duración en horas
-//    const duration = (endDate - startDate) / (1000 * 60 * 60);
-    
-    // Definir tarifas por tipo de auto (por hora)
-    //const rates = {
-      //  economy: 10,   // Ejemplo: $10 por hora
-    //    standard: 20,  // Ejemplo: $20 por hora
-  //      luxury: 40,     // Ejemplo: $40 por hora
-//    };
+    const preciosPorHora = [15, 20, 25, 30, 18, 35, 12];
+    const precioPorHora = preciosPorHora[categoria - 1];
 
-    // Calcular costo total
-    //const rate = rates[carType];
-    //const totalCost = duration * rate;
+    // Calcular la diferencia en milisegundos
+    const diferencia = endDate - startDate;
 
-    // Redondear el costo total al número entero más cercano
-  //  const roundedCost = Math.round(totalCost);
-
-    // Mostrar resultado
- //   document.getElementById('result').innerText = `Costo Total: ${roundedCost} us.`;
-
-//
-
-
-// script.js
-function calculateRental() {
-    const categoryElement = document.getElementById('car-category');
-    const daysElement = document.getElementById('rental-days');
-    const resultElement = document.getElementById('total-cost');
-
-    const dailyRate = parseInt(categoryElement.value, 10);
-    const rentalDays = parseInt(daysElement.value, 10);
-
-    if (rentalDays < 1) {
-        resultElement.textContent = 'Número de días no válido.';
+    // Verificar si la fecha de finalización es posterior a la de inicio
+    if (diferencia <= 0) {
+        alert("La fecha y hora de finalización deben ser posteriores a la de inicio.");
         return;
     }
 
-    let totalCost = dailyRate * rentalDays;
+    // Convertir la diferencia a días
+    const dias = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
 
-    // Aplicar descuento del 30% a partir de 3 días
-    if (rentalDays >= 3) {
-        totalCost *= 0.7;
+    const precioPorDia = precioPorHora * 24;
+    let total = precioPorDia * dias;
+
+    if (dias > 6) {
+        total *= 0.7; // Aplicar 30% de descuento
     }
 
-    // Mostrar el resultado redondeado a entero
-    resultElement.textContent = `Costo total: $${Math.round(totalCost)}`;
-}
+    const opciones = {
+        limitado: 'Con límite de kilometraje (120km)',
+        ilimitado: 'Sin límite de kilometraje'
+    };
+
+    // Redirigir a la página de resultado
+    localStorage.setItem('total', Math.round(total));
+    localStorage.setItem('opcion', opciones[kilometraje]);
+    window.location.href = 'resultado.html';
+});
