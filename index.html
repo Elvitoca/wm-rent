@@ -28,7 +28,9 @@
 
   <!--Main -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <link href="assets/css/styles_coti.css" rel="stylesheet">
+  <!--<link href="assets/css/styles_coti.css" rel="stylesheet">-->
+  <link href="assets/css/styles.css" rel="stylesheet">
+  
 <!--Redes Botón -->
   <style type="text/css">
   .social-buttons {
@@ -144,32 +146,21 @@ Descubre nuestro servicio de primera clase hoy mismo. ¡Tu viaje de lujo comienz
         <div class="row content">
           <div class="col-lg-6">
             <!-- Form Cotizador -->
-        <form id="rentaForm">
-            <label for="categoria">Seleccione la categoría del auto:</label>
-            <select id="categoria" required>
-                <option value="1">Sedán - $15/hora</option>
-                <option value="2">SUV - $20/hora</option>
-                <option value="3">Camioneta - $25/hora</option>
-                <option value="4">Convertible - $30/hora</option>
-                <option value="5">Minivan - $18/hora</option>
-                <option value="6">Deportivo - $35/hora</option>
-                <option value="7">Económico - $12/hora</option>
-            </select>
+         <form id="rentalForm" action="results.html" method="GET">
+        <label for="pickupDate">Fecha y Hora de Retiro:</label>
+        <input type="datetime-local" id="pickupDate" name="pickupDate" required>
 
-            <label for="startDate">Seleccione la fecha y hora de inicio:</label>
-            <input type="datetime-local" id="startDate" name="startDate" required>
+        <label for="returnDate">Fecha y Hora de Entrega:</label>
+        <input type="datetime-local" id="returnDate" name="returnDate" required>
 
-            <label for="endDate">Seleccione la fecha y hora de finalización:</label>
-            <input type="datetime-local" id="endDate" name="endDate" required>
+        <label for="pricingType">Tipo de Tarifa:</label>
+        <select id="pricingType" name="pricingType" required>
+            <option value="limited">Precio por km limitado (120 km diarios)</option>
+            <option value="unlimited">Precios km libre</option>
+        </select>
 
-            <label for="kilometraje">Seleccione una opción:</label>
-            <select id="kilometraje" required>
-                <option value="limitado">Con límite de kilometraje (120km)</option>
-                <option value="ilimitado">Sin límite de kilometraje</option>
-            </select>
-
-            <button type="submit">Calcular Renta</button>
-        </form><!-- Fin Form Cotizador -->
+        <button type="submit">Calcular Cotización</button>
+    </form><!-- Fin Form Cotizador -->
     </div>
     <div class="col-lg-6 pt-4 pt-lg-0">
            <h3>REQUISITOS</h3>
@@ -835,7 +826,7 @@ Descubre nuestro servicio de primera clase hoy mismo. ¡Tu viaje de lujo comienz
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-<script src="assets/js/script_coti.js"></script>
+<!--<script src="assets/js/script_coti.js"></script>-->
   <div class="social-buttons">
      <!--<a href="https://facebook.com" target="_blank" class="social-button facebook"><i class="bi bi-facebook"></i></a>-->
      <!--<a href="https://twitter.com" target="_blank" class="social-button twitter"><i class="bi bi-twitter"></i></a>-->
