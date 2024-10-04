@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Cotización</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Resultados de Cotización de Renta de Autos</h1>
+    <div id="results"></div>
+    <a href="index.html" class="back-link">Volver al inicio</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Obtener los parámetros de la URL
+            const params = new URLSearchParams(window.location.search);
+            const pickupDate = new Date(params.get("pickupDate"));
+            const returnDate = new Date(params.get("returnDate"));
+            const pricingType = params.get("pricingType");
+
+            if (!pickupDate || !returnDate || returnDate <= pickupDate) {
+                document.getElementById('results').innerHTML = "<p>Por favor ingrese fechas válidas.</p>";
+                return;
+            }
+
+            // Calcular la cantidad de días de alquiler
+            const timeDiff = Math.abs(returnDate - pickupDate);
+            const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+            // Definir los precios según el tipo de tarifa
+            const cars = [
+                {
+                    name: "NISSAN VERSA 2024",
+                    limited: [360000, 330000, 285000, 265000],
+                    unlimited: [480000, 460000, 380000, 340000]
+                },
+                {
+                    name: "Kia Soluto Automático",
+                    limited: [300000, 280000, 255000, 240000],
+                    unlimited: [420000, 400000, 320000, 280000]
+                },
+                {
+                    name: "Kia Soluto Mecánico",
+                    limited: [250000, 230000, 220000, 200000],
+                    unlimited: [360000, 350000, 280000, 250000]
+                },
+{
+                    name: "TOYOTA NEW ALLION",
+                    limited: [250000, 230000, 220000, 200000],
+                    unlimited: [360000, 340000, 300000, 250000]
+                },
+{
+                    name: "Chery Arrizo",
+                    limited: [250000, 230000, 220000, 200000],
+                    unlimited: [360000, 340000, 300000, 250000]
+                },
+{
+                    name: "Toyota New Vitz 2008 al 2012",
+                    limited: [200000, 190000, 180000, 160000],
+                    unlimited: [330000, 300000, 240000, 210000]
+                },
+{
+                    name: "SsangYong Tivoli",
+                    limited: [400000, 380000, 360000, 345000],
+                    unlimited: [550000, 520000, 460000, 390000]
+                },
+{
+                    name: "VW T-CROSS 2025",
+                    limited: [380000, 360000, 300000, 280000],
+                    unlimited: [480000, 450000, 380000, 340000]
+                },
+{
+                    name: "NISSAN KIKS",
+                    limited: [400000, 390000, 300000, 280000],
+                    unlimited: [480000, 450000, 380000, 340000]
+                },
+{
+                    name: "KIA SPORTAGE 2025",
+                    limited: [600000, 580000, 480000, 450000],
+                    unlimited: [800000, 700000, 480000, 450000]
+                },
+{
+                    name: "NISSAN FRONTIER 2025",
+                    limited: [1300000, 1300000, 990000, 800000],
+                    unlimited: [1300000, 1300000, 990000, 800000]
+                },
+{
+                    name: "MAZDA BT50",
+                    limited: [1300000, 1300000, 990000, 800000],
+                    unlimited: [1300000, 1300000, 990000, 800000]
+                },
+{
+                    name: "HYUNDAI H1",
+                    limited: [800000, 760000, 660000, 600000],
+                    unlimited: [1300000, 1100000, 900000, 650000]
+                },
+                // Añadir el resto de los vehículos de la misma manera...
+            ];
+
+            // Seleccionar el rango de precios según la cantidad de días
+            let priceRangeIndex;
+            if (days <= 2) {
+                priceRangeIndex = 0;
+            } else if (days <= 6) {
+                priceRangeIndex = 1;
+            } else if (days <= 15) {
+                priceRangeIndex = 2;
+            } else {
+                priceRangeIndex = 3;
+            }
+
+            // Generar los resultados
+            let resultsHtml = `<h2>Opciones de Autos para ${days} día(s)</h2>`;
+            cars.forEach(car => {
+                const price = pricingType === "limited" ? car.limited[priceRangeIndex] : car.unlimited[priceRangeIndex];
+                resultsHtml += `
+                    <div class="car-card">
+                        <p><strong>${car.name}</strong>: ${price.toLocaleString()} gs por día</p>
+                        <a href="#" class="contact-link">Contactar</a>
+                    </div>
+                `;
+            });
+
+            // Mostrar los resultados
+            document.getElementById('results').innerHTML = resultsHtml;
+        });
+    </script>
+</body>
+</html>
