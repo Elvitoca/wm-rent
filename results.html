@@ -45,7 +45,16 @@
     .icono {
   font-size: 140px; /*  */
 }
+.titulo_opciones{
+  align-items: center;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  width: 200px;
 
+  background: #ffff99;
+  color: #333;
+}
 </style>
 </head>
 
@@ -72,7 +81,7 @@
     <!-- ======= Autos Section ======= -->
     <section>
      
-     <h3>Resultados de Cotización de Renta de Autos</h3>
+     <h3></h3>
     <div id="results"></div>
     <a href="index.html" class="back-link">Volver al inicio</a>
 
@@ -176,7 +185,7 @@
             }
 
             // Generar los resultados
-            let resultsHtml = `<h5>Opciones de Autos para ${days} día(s)</h5>`;
+            let resultsHtml = `<div class="titulo_opciones"><h5>Opciones de Autos para ${days} día(s)</h5></div>`;
             cars.forEach(car => {
                 const price = pricingType === "limited" ? car.limited[priceRangeIndex] : car.unlimited[priceRangeIndex];
                 resultsHtml += `
