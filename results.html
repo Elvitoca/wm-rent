@@ -45,16 +45,7 @@
     .icono {
   font-size: 140px; /*  */
 }
-.titulo_opciones{
-  align-items: center;
-  display: flex;
-  height: 100px;
-  justify-content: center;
-  width: 200px;
 
-  background: #ffff99;
-  color: #333;
-}
 </style>
 </head>
 
@@ -185,7 +176,7 @@
             }
 
             // Generar los resultados
-            let resultsHtml = `<div class="titulo_opciones"><h5>Opciones de Autos para ${days} día(s)</h5></div>`;
+            let resultsHtml = `<div style="display: grid; place-items: center; height: 300px;"><h5>Opciones de Autos para ${days} día(s)</h5></div>`;
             cars.forEach(car => {
                 const price = pricingType === "limited" ? car.limited[priceRangeIndex] : car.unlimited[priceRangeIndex];
                 resultsHtml += `
