@@ -204,7 +204,7 @@
             }
 
             // Generar los resultados
-            let resultsHtml = `<h2>Opciones de Autos para ${days} día(s)</h2>`;
+            let resultsHtml = `<h5>Opciones de Autos para ${days} día(s)</h5>`;
             cars.forEach(car => {
                 const price = pricingType === "limited" ? car.limited[priceRangeIndex] : car.unlimited[priceRangeIndex];
                 resultsHtml += `
