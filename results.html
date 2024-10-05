@@ -93,70 +93,96 @@
             const timeDiff = Math.abs(returnDate - pickupDate);
             const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-            // Definir los precios según el tipo de tarifa
+            // Definir los precios y detalles de los autos
             const cars = [
                 {
                     name: "NISSAN VERSA 2024",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [360000, 330000, 285000, 265000],
                     unlimited: [480000, 460000, 380000, 340000]
                 },
                 {
                     name: "Kia Soluto Automático",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [300000, 280000, 255000, 240000],
                     unlimited: [420000, 400000, 320000, 280000]
                 },
                 {
                     name: "Kia Soluto Mecánico",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [250000, 230000, 220000, 200000],
                     unlimited: [360000, 350000, 280000, 250000]
                 },
 {
                     name: "TOYOTA NEW ALLION",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [250000, 230000, 220000, 200000],
                     unlimited: [360000, 340000, 300000, 250000]
                 },
 {
                     name: "Chery Arrizo",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [250000, 230000, 220000, 200000],
                     unlimited: [360000, 340000, 300000, 250000]
                 },
 {
                     name: "Toyota New Vitz 2008 al 2012",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [200000, 190000, 180000, 160000],
                     unlimited: [330000, 300000, 240000, 210000]
                 },
 {
                     name: "SsangYong Tivoli",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [400000, 380000, 360000, 345000],
                     unlimited: [550000, 520000, 460000, 390000]
                 },
 {
                     name: "VW T-CROSS 2025",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [380000, 360000, 300000, 280000],
                     unlimited: [480000, 450000, 380000, 340000]
                 },
 {
                     name: "NISSAN KIKS",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [400000, 390000, 300000, 280000],
                     unlimited: [480000, 450000, 380000, 340000]
                 },
 {
                     name: "KIA SPORTAGE 2025",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [600000, 580000, 480000, 450000],
                     unlimited: [800000, 700000, 480000, 450000]
                 },
 {
                     name: "NISSAN FRONTIER 2025",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [1300000, 1300000, 990000, 800000],
                     unlimited: [1300000, 1300000, 990000, 800000]
                 },
 {
                     name: "MAZDA BT50",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [1300000, 1300000, 990000, 800000],
                     unlimited: [1300000, 1300000, 990000, 800000]
                 },
 {
                     name: "HYUNDAI H1",
+                    image: "nissan_versa_2024.png",
+                    description: "El Nissan Versa 2024 ofrece una gran comodidad y eficiencia para viajes largos.",
                     limited: [800000, 760000, 660000, 600000],
                     unlimited: [1300000, 1100000, 900000, 650000]
                 },
@@ -176,13 +202,16 @@
             }
 
             // Generar los resultados
-            let resultsHtml = `<h5>Opciones de Autos para ${days} día(s)</h5>`;
+            let resultsHtml = `<h2>Opciones de Autos para ${days} día(s)</h2>`;
             cars.forEach(car => {
                 const price = pricingType === "limited" ? car.limited[priceRangeIndex] : car.unlimited[priceRangeIndex];
                 resultsHtml += `
                     <div class="car-card">
-                        <p><strong>${car.name}</strong>: ${price.toLocaleString()} gs por día</p>
-                        <a href="https://wa.me/+595983496378" target="_blank" class="contact-link">Whatsapp</a>
+                        <img src="${car.image}" alt="${car.name}" class="car-image">
+                        <h3>${car.name}</h3>
+                        <p>${car.description}</p>
+                        <p><strong>Precio:</strong> ${price.toLocaleString()} gs por día</p>
+                        <a href="#" class="contact-link">Contactar</a>
                     </div>
                 `;
             });
