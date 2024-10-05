@@ -19,7 +19,9 @@ label {
     font-weight: bold;
 }
 
-input, select, button {
+input,
+select,
+button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -28,7 +30,7 @@ input, select, button {
 }
 
 button {
-    background-color: #FF5722;
+    background-color: #007bff;
     color: #ffffff;
     border: none;
     cursor: pointer;
@@ -36,10 +38,10 @@ button {
 }
 
 button:hover {
-    background-color: #f80000;
+    background-color: #0056b3;
 }
 
-#results {
+.results-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -49,18 +51,25 @@ button:hover {
 .car-card {
     background-color: #ffffff;
     padding: 15px;
-    border-radius: 3px;
+    border-radius: 10px;
     border: 1px solid #ccc;
     width: calc(100% - 40px);
-    max-width: 400px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    max-width: 350px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 10px;
     text-align: center;
     transition: box-shadow 0.3s ease;
+    position: relative;
 }
 
 .car-card:hover {
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.car-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
 }
 
 .contact-link {
