@@ -93,38 +93,56 @@ Gracias nuevamente por elegir Rent a Car WM, donde su comodidad es nuestra prior
 
 
     <!-- ======= Autos Section ======= -->
-    <section>
-     
-     <h3></h3>
+<!-- ======= Autos Section ======= -->
+<section>
+    <h3></h3>
     <div id="results" class="results-container"></div>
     <a href="index.html" class="back-link">Volver al inicio</a>
 
+    <!-- Modal para el formulario -->
+    <div id="whatsappModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Formulario de Reserva</h2>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" required>
+            <label for="lastName">Apellido:</label>
+            <input type="text" id="lastName" required>
+            <label for="phone">Teléfono:</label>
+            <input type="text" id="phone" required>
+            <label for="address">Dirección:</label>
+            <input type="text" id="address" required>
+            <button id="sendWhatsapp" onclick="sendWhatsApp()">WhatsApp</button>
+            <button id="downloadPDF" onclick="downloadPDF()">Descargar PDF</button>
+            <button id="sendEmail" onclick="sendEmail()">Enviar Correo</button>
+        </div>
+    </div>
+
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Obtener los parámetros de la URL
-    const params = new URLSearchParams(window.location.search);
-    const pickupDate = new Date(params.get("pickupDate"));
-    const returnDate = new Date(params.get("returnDate"));
-    const pricingType = params.get("pricingType");
+        document.addEventListener("DOMContentLoaded", function () {
+            // Obtener los parámetros de la URL
+            const params = new URLSearchParams(window.location.search);
+            const pickupDate = new Date(params.get("pickupDate"));
+            const returnDate = new Date(params.get("returnDate"));
+            const pricingType = params.get("pricingType");
 
-    if (!pickupDate || !returnDate || returnDate <= pickupDate) {
-        document.getElementById('results').innerHTML = "<p>Por favor ingrese fechas válidas.</p>";
-        return;
-    }
+            if (!pickupDate || !returnDate || returnDate <= pickupDate) {
+                document.getElementById('results').innerHTML = "<p>Por favor ingrese fechas válidas.</p>";
+                return;
+            }
 
-    // Calcular la cantidad de días de alquiler
-    const timeDiff = Math.abs(returnDate - pickupDate);
-    const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Redondeo hacia arriba
+            // Calcular la cantidad de días de alquiler
+            const timeDiff = Math.abs(returnDate - pickupDate);
+            const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Redondeo hacia arriba
 
-    // Definir los precios y detalles de los autos
-    const cars = [
+            // Definir los precios y detalles de los autos
+            const cars = [
                 {
                     name: "Nissan Versa 2024",
                     image: "assets/img/cars_result_img/nissan_versa_2024.jpg",
                     description: "Diseño moderno, comodidad en viajes largos, ideal para familias.",
                     limited: [360000, 330000, 285000, 265000],
                     unlimited: [480000, 460000, 380000, 340000]
-                    
                 },
                 {
                     name: "Kia Soluto Automático",
@@ -140,126 +158,154 @@ document.addEventListener("DOMContentLoaded", function () {
                     limited: [250000, 230000, 220000, 200000],
                     unlimited: [360000, 350000, 280000, 250000]
                 },
-{
+                {
                     name: "Toyota New Allion",
                     image: "assets/img/cars_result_img/TOYOTA NEW ALLION.jpg",
                     description: "Espacioso y cómodo, conducción suave, motor eficiente y fiable.",
                     limited: [250000, 230000, 220000, 200000],
                     unlimited: [360000, 340000, 300000, 250000]
                 },
-{
+                {
                     name: "Chery Arrizo",
                     image: "assets/img/cars_result_img/Chery_Arrizo.jpg",
                     description: "Diseño elegante, rendimiento eficiente, cómodo para viajes diarios.",
                     limited: [250000, 230000, 220000, 200000],
                     unlimited: [360000, 340000, 300000, 250000]
                 },
-{
-                    name: "Toyota New Vitz 2008-2012",
+                {
+                    name: "Toyota New Vitz",
                     image: "assets/img/cars_result_img/Toyota_New_Vitz.jpg",
                     description: "Compacto y versátil, fácil maniobrabilidad, motor eficiente y duradero.",
                     limited: [200000, 190000, 180000, 160000],
                     unlimited: [330000, 300000, 240000, 210000]
                 },
-{
+                {
                     name: "SsangYong Tivoli",
                     image: "assets/img/cars_result_img/SsangYong_Tivoli.jpg",
                     description: "SUV moderno, amplio espacio interior, perfecto para aventuras dentro y fuera.",
                     limited: [400000, 380000, 360000, 345000],
                     unlimited: [550000, 520000, 460000, 390000]
                 },
-{
+                {
                     name: "VW T-Cross 2025",
                     image: "assets/img/cars_result_img/VW_T_CROSS_2025.jpg",
                     description: "SUV compacto, diseño deportivo, tecnología avanzada, ideal para familias activas.",
                     limited: [380000, 360000, 300000, 280000],
                     unlimited: [480000, 450000, 380000, 340000]
                 },
-{
+                {
                     name: "Nissan Kiks",
                     image: "assets/img/cars_result_img/NISSAN_KIKS.jpg",
                     description: "Confiabilidad Nissan, diseño robusto, gran visibilidad, tecnología moderna y eficiente.",
                     limited: [400000, 390000, 300000, 280000],
                     unlimited: [480000, 450000, 380000, 340000]
                 },
-{
+                {
                     name: "Kia Sportage 2025",
                     image: "assets/img/cars_result_img/KIA_SPORTAGE_2025.jpg",
                     description: "Potente SUV, diseño dinámico, ideal para rutas exigentes y cómodos viajes.",
                     limited: [600000, 580000, 480000, 450000],
                     unlimited: [800000, 700000, 480000, 450000]
                 },
-{
+                {
                     name: "Nissan Frontier 2025",
                     image: "assets/img/cars_result_img/NISSAN_FRONTIER_2025.jpg",
                     description: "Camioneta robusta, perfecta para trabajos pesados, gran capacidad de carga.",
                     limited: [1300000, 1300000, 990000, 800000],
                     unlimited: [1300000, 1300000, 990000, 800000]
                 },
-{
+                {
                     name: "Mazda BT50",
                     image: "assets/img/cars_result_img/MAZDA_BT50.jpg",
                     description: "Estilo robusto y moderno, gran capacidad de carga, ideal para terrenos difíciles.",
                     limited: [1300000, 1300000, 990000, 800000],
                     unlimited: [1300000, 1300000, 990000, 800000]
                 },
-{
+                {
                     name: "Hyundai H1",
                     image: "assets/img/cars_result_img/HYUNDAI_H1.jpg",
                     description: "Van espaciosa, ideal para grupos grandes, conducción estable, motor potente y eficiente.",
                     limited: [800000, 760000, 660000, 600000],
                     unlimited: [1300000, 1100000, 900000, 650000]
                 },
-                // Añadir el resto de los vehículos de la misma manera...
+                // ... agregar más autos aquí ...
             ];
-    // Seleccionar el rango de precios según la cantidad de días
-    let priceRangeIndex;
-    if (days <= 2) {
-        priceRangeIndex = 0;
-    } else if (days <= 6) {
-        priceRangeIndex = 1;
-    } else if (days <= 15) {
-        priceRangeIndex = 2;
-    } else {
-        priceRangeIndex = 3;
-    }
 
-    // Generar los resultados
-    let resultsHtml = `
-        <div class="results-title">
-            <h4></h4>
-        </div></br></br>
-    `;
+            // Seleccionar el rango de precios según la cantidad de días
+            let priceRangeIndex;
+            if (days <= 2) {
+                priceRangeIndex = 0;
+            } else if (days <= 6) {
+                priceRangeIndex = 1;
+            } else if (days <= 15) {
+                priceRangeIndex = 2;
+            } else {
+                priceRangeIndex = 3;
+            }
 
-    cars.forEach(car => {
-    const price = pricingType === "limited" ? car.limited[priceRangeIndex] : car.unlimited[priceRangeIndex];
-    const totalPrice = price * days;  // Calcular el total multiplicando el precio por los días seleccionados
-    resultsHtml += `
-        <div class="car-card">
-            <img src="${car.image}" alt="${car.name}" class="car-image">
-            <h3>${car.name}</h3>
-            <p>${car.description}</p>
-            <p><strong>Precio por día:</strong> ${price.toLocaleString()} gs.</p>
-            <p><strong>Total:</strong> ${totalPrice.toLocaleString()} gs. por ${days} día(s)</p>
-            <a href="https://wa.me/+595983496378" target="_blank" class="contact-link">Whatsapp</a>
-        </div>
-    `;
-});
+            // Generar los resultados
+            let resultsHtml = `
+                <div class="results-title">
+                    <h4></h4>
+                </div></br></br>
+            `;
 
+            cars.forEach(car => {
+                const price = pricingType === "limited" ? car.limited[priceRangeIndex] : car.unlimited[priceRangeIndex];
+                const totalPrice = price * days;  // Calcular el total multiplicando el precio por los días seleccionados
+                resultsHtml += `
+                    <div class="car-card">
+                        <img src="${car.image}" alt="${car.name}" class="car-image">
+                        <h3>${car.name}</h3>
+                        <p>${car.description}</p>
+                        <p><strong>Precio por día:</strong> ${price.toLocaleString()} gs.</p>
+                        <p><strong>Total:</strong> ${totalPrice.toLocaleString()} gs. por ${days} día(s)</p>
+                        <button class="contact-link" onclick="openModal('${car.name}', ${totalPrice}, ${days})">Reservar</button>
+                    </div>
+                `;
+            });
 
-    // Mostrar los resultados
-    document.getElementById('results').innerHTML = resultsHtml;
-});
+            // Mostrar los resultados
+            document.getElementById('results').innerHTML = resultsHtml;
+        });
 
+        function openModal(carName, totalPrice, days) {
+            const modal = document.getElementById("whatsappModal");
+            modal.style.display = "block";
+            document.querySelector("#whatsappModal h3").innerText = `Reserva de ${carName}`;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("whatsappModal");
+            modal.style.display = "none";
+        }
+
+        function sendWhatsApp() {
+            const name = document.getElementById("name").value;
+            const lastName = document.getElementById("lastName").value;
+            const phone = document.getElementById("phone").value;
+            const address = document.getElementById("address").value;
+            const message = `¡Hola Rean a Car WM! Quiero reservar el auto. \nNombre: ${name} ${lastName}\nTeléfono: ${phone}\nDirección: ${address}`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/595981484683?text=${encodedMessage}`;
+            window.open(whatsappURL, "_blank");
+            closeModal();
+        }
+
+        function downloadPDF() {
+            alert("Funcionalidad de descarga de PDF no implementada."); // Placeholder
+            // Aquí iría el código para descargar el PDF.
+        }
+
+        function sendEmail() {
+            alert("Funcionalidad de envío de correo no implementada."); // Placeholder
+            // Aquí iría el código para enviar el correo.
+        }
     </script>
-     
-     
-     
-     
-     
-     
-     
-    </section><!-- End Autos Section -->
+</section>
+
+
+
 
 
     <section id="cotizador" class="about">
@@ -369,75 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
-    <!--<div class="footer-newsletter">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-          </div>
-          <div class="col-lg-6">
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>-->
-
-    <!--<div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
-            </p>
-
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-info">
-            <h3>About Anyar</h3>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-            <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>-->
+    
 
     <div class="container">
       <div class="copyright">
