@@ -74,7 +74,7 @@
 
         .slider {
             color: aliceblue;
-            
+
             position: relative;
             width: 420px;
             /* Ajusta el ancho según sea necesario */
@@ -95,30 +95,69 @@
             display: block;
             /* Muestra el slide activo */
         }
-        
+
         .title_coti {
-    color: aliceblue;
-    text-align: center; /* Centra el texto si es necesario */
-    font-size: 2vw; /* Ajusta el tamaño de fuente según el ancho de la ventana */
-    padding: 10px; /* Espaciado alrededor del título */
-}
+            color: aliceblue;
+            text-align: center;
+            /* Centra el texto si es necesario */
+            font-size: 2vw;
+            /* Ajusta el tamaño de fuente según el ancho de la ventana */
+            padding: 10px;
+            /* Espaciado alrededor del título */
+        }
 
-.title_coti img {
-    max-width: 100%; /* Asegura que la imagen no supere el ancho del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: block; /* Elimina el espacio debajo de la imagen */
-    margin: 0 auto; /* Centra la imagen horizontalmente */
-}
+        .title_coti img {
+            max-width: 100%;
+            /* Asegura que la imagen no supere el ancho del contenedor */
+            height: auto;
+            /* Mantiene la proporción de la imagen */
+            display: block;
+            /* Elimina el espacio debajo de la imagen */
+            margin: 0 auto;
+            /* Centra la imagen horizontalmente */
+        }
 
+        .coti_justi_cntr {
+            color: aliceblue;
+            font-size: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+
+        }
+        .slider_cont_center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         
-@media (max-width: 459px) {
+        .title_Cotizador_WM {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .uso_coti_box {
+           
+        }
+        @media (max-width: 459px) {
     .slider {
-        color: ;
-        font-size: ; /* Aumenta el tamaño de la fuente en pantallas más pequeñas */
+        color: ; /* Asigna un color, por ejemplo, negro */
+         /* Aumenta el tamaño de la fuente */
         width: 300px;
     }
 }
+        @media (max-width: 450px){
+        .coti_justi_cntr {
+            text-align: center;
+            color: aliceblue;
+            font-size: ;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
 
+        }
 }
 
     </style>
@@ -216,35 +255,16 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title"><br><br><br>
-                    <h2>Servicios</h2>
+                    <h2>Cotizador WM</h2>
                     <p></p>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon-box">
-                            <i class="bi bi-card-"></i>
-                            <h4><a href="#">Cotizador de Vehiculos WM</a></h4>
-                            <p>Seleccione las diversas opciones de autos, cada uno con características que se adaptan a diferentes necesidades y presupuestos. Podrá ver el nombre del vehículo, su precio diario basado en la duración de su alquiler, así como una breve descripción de cada modelo.</p>
-                            <div class="bt_coti">
-                                <a href="cotizador.html"><button>Cotizador WM</button></a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
-                        <div class="icon-box" style='background-image: url("assets/img/hero-bg.jpg");'>
-                          <div class="title_coti"><h3>Uso del Cotizador</h3></div>
-                                 <div class="slider">
-                                <div class="slide active">Paso 1: Ingreso de Datos Haz clic en el botón "Cotizador" para acceder a la herramienta. Una vez dentro, ingresarás el cotizador WM, donde deberás seleccionar la fecha y hora de retiro del vehículo, así como la fecha y hora de entrega. También podrás elegir el límite de kilometraje, que puede ser de 120 km o kilometraje libre.</div>
-                                <div class="slide">Paso 2: Selección de Vehículo Después de ingresar tus datos, se mostrarán los resultados con los autos disponibles que cumplen con tus criterios. Revisa las opciones y elige el vehículo que mejor se adapte a tus necesidades. A continuación, deberás completar el formulario con tus datos personales y aceptar los términos y condiciones.</div>
-                                <div class="slide">Paso 3: Confirmación y Descarga Una vez que hayas elegido tu vehículo y completado el formulario, tendrás dos opciones: confirmar tu reserva o solicitar más información a través de WhatsApp. Además, tendrás la posibilidad de descargar tu pedido en formato PDF para tener un registro de tu solicitud.</div>
-                        </div>
-
-                    </div>
+                    <div id="content" style="border: 0px solid #000; padding: 20px; margin-top: 20px; height: 600px;">
+        <!-- El iframe se carga automáticamente al cargar la página -->
+        <iframe src="cotizador.html" width="100%" height="100%" frameborder="0"></iframe>
+    </div><br>
                 </div>
-
-            </div>
 
             </div>
         </section><!--  -->
