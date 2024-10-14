@@ -15,7 +15,7 @@
     <meta name="author" content="Rent a Car WM">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.rentacarwm.com.py">
-     <!-- Metadatos para Facebook Open Graph -->
+    <!-- Metadatos para Facebook Open Graph -->
     <meta property="og:title" content="Alquiler de Vehículos en Paraguay | Rent a Car WM">
     <meta property="og:description" content="Renta un auto con facilidad y seguridad en Paraguay. Rent a Car WM ofrece autos económicos y de lujo.">
     <meta property="og:image" content="https://www.rentacarwm.com/assets//images/favicon.png"> <!-- Imagen compartida en redes -->
@@ -67,13 +67,41 @@
             font-size: 140px;
             /*  */
         }
+
         .bt_coti {
             text-align: center;
         }
 
+        .slider {
+            color: aliceblue;
+            
+            position: relative;
+            width: 300px;
+            /* Ajusta el ancho según sea necesario */
+            height: 100px;
+            /* Ajusta la altura según sea necesario */
+            overflow: hidden;
+        }
 
+        .slide {
+            display: none;
+            /* Oculta todos los slides por defecto */
+            position: absolute;
+            width: 100%;
+            height: 120px;
+        }
+
+        .slide.active {
+            display: block;
+            /* Muestra el slide activo */
+        }
+        
+        .title_coti {
+            color: aliceblue;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- ======= Top Bar ======= -->
@@ -100,8 +128,8 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Servicios</a></li>
                     <li><a class="nav-link scrollto" href="#about">Nosotros</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Servicios</a></li>
                     <li><a class="nav-link scrollto " href="#portfolio">Flota de vehículos</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
 
@@ -162,7 +190,7 @@
 
     <main id="main">
 
-<section id="services" class="services">
+        <section id="services" class="services">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title"><br><br><br>
@@ -175,7 +203,7 @@
                         <div class="icon-box">
                             <i class="bi bi-card-"></i>
                             <h4><a href="#">Cotizador de Vehiculos WM</a></h4>
-                            <p>Elija la fecha de retiro y entrega con o sin límite de Km, luego accedera a las opciones disponibles y podra reservar su elección.</p>
+                            <p>Seleccione las diversas opciones de autos, cada uno con características que se adaptan a diferentes necesidades y presupuestos. Podrá ver el nombre del vehículo, su precio diario basado en la duración de su alquiler, así como una breve descripción de cada modelo.</p>
                             <div class="bt_coti">
                                 <a href="cotizador.html"><button>Cotizador WM</button></a>
                             </div>
@@ -183,20 +211,24 @@
                         </div>
                     </div>
                     <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
-                        <div class="icon-box">
-                            <i class="bi bi-bar-"></i>
-                            <h4><a href="#">Renta a Largo Plazo</a></h4>
-                            <p>Ofrecemos planes de alquiler a largo plazo con tarifas flexibles a tus necesidades</p>
+                        <div class="icon-box" style='background-image: url("assets/img/why-us.jpg");'>
+                          <div class="title_coti"><h3>Uso del Cotizador</h3></div>
+                                 <div class="slider">
+                                <div class="slide active">Paso 1: Ingreso de Datos Haz clic en el botón "Cotizador" para acceder a la herramienta. Una vez dentro, ingresarás el cotizador WM, donde deberás seleccionar la fecha y hora de retiro del vehículo, así como la fecha y hora de entrega. También podrás elegir el límite de kilometraje, que puede ser de 120 km o kilometraje libre.</div>
+                                <div class="slide">Paso 2: Selección de Vehículo Después de ingresar tus datos, se mostrarán los resultados con los autos disponibles que cumplen con tus criterios. Revisa las opciones y elige el vehículo que mejor se adapte a tus necesidades. A continuación, deberás completar el formulario con tus datos personales y aceptar los términos y condiciones.</div>
+                                <div class="slide">Paso 3: Confirmación y Descarga Una vez que hayas elegido tu vehículo y completado el formulario, tendrás dos opciones: confirmar tu reserva o solicitar más información a través de WhatsApp. Además, tendrás la posibilidad de descargar tu pedido en formato PDF para tener un registro de tu solicitud.</div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
+
+            </div>
 
             </div>
         </section><!--  -->
 
 
-       <section id="cta" class="cta">
+        <section id="cta" class="cta">
             <div class="container">
 
                 <div class="row" data-aos="zoom-in">
@@ -418,7 +450,7 @@
                 &copy; Copyright 2024 <strong><span>Rent a Car - WM </span></strong> Derechos Reservados.
             </div>
             <div class="credits">
-                
+
                 Designed by <a href="https://">VC Web Designer 2024</a>
             </div>
         </div>
@@ -437,59 +469,152 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-    
-    <!-- Script  -->
-    
+
+    <!-- 
+
     <script>
-    document.getElementById('cotizador').addEventListener('submit', function(e) {
-    e.preventDefault();
+        document.getElementById('cotizador').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-    const fechaRetiro = new Date(document.getElementById('fechaRetiro').value);
-    const fechaEntrega = new Date(document.getElementById('fechaEntrega').value);
-    
-    if (fechaEntrega <= fechaRetiro) {
-        alert("La fecha de entrega debe ser posterior a la fecha de retiro.");
-        return;
-    }
+            const fechaRetiro = new Date(document.getElementById('fechaRetiro').value);
+            const fechaEntrega = new Date(document.getElementById('fechaEntrega').value);
 
-    const kilometraje = document.getElementById('kilometraje').value;
-    const dias = Math.ceil((fechaEntrega - fechaRetiro) / (1000 * 60 * 60 * 24));
+            if (fechaEntrega <= fechaRetiro) {
+                alert("La fecha de entrega debe ser posterior a la fecha de retiro.");
+                return;
+            }
 
-    // Mostrar el resultado de los autos disponibles
-    document.getElementById('resultado').style.display = 'block';
-    document.getElementById('resultado').dataset.kilometraje = kilometraje; // Guardar el kilometraje para usar después
-    document.getElementById('resultado').dataset.dias = dias; // Guardar los días para usar después
+            const kilometraje = document.getElementById('kilometraje').value;
+            const dias = Math.ceil((fechaEntrega - fechaRetiro) / (1000 * 60 * 60 * 24));
 
-    // Scroll hacia la sección de resultados
-    document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
-});
+            // Mostrar el resultado de los autos disponibles
+            document.getElementById('resultado').style.display = 'block';
+            document.getElementById('resultado').dataset.kilometraje = kilometraje; // Guardar el kilometraje para usar después
+            document.getElementById('resultado').dataset.dias = dias; // Guardar los días para usar después
 
-document.querySelectorAll('.reservar-btn').forEach(button => {
-    button.addEventListener('click', function () {
-        const autoId = this.dataset.autoId;
-        const kilometraje = document.getElementById('resultado').dataset.kilometraje; // Obtener el kilometraje guardado
-        const dias = document.getElementById('resultado').dataset.dias; // Obtener los días guardados
+            // Scroll hacia la sección de resultados
+            document.getElementById('resultado').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
 
-        const autoDetalles = {
-    1: { nombre: 'Nissan Versa 2024', color: 'Negro', pasajeros: 5, motor: 'V6', precioPorDia: 100, imagen: 'assets/img/cars_result_img/nissan_versa_2024.jpg' },
-    2: { nombre: 'Gama Media', color: 'Plateado', pasajeros: 4, motor: 'V4', precioPorDia: 70, imagen: 'assets/img/cars_result_img/kia_soluto_automatico.jpeg' },
-    3: { nombre: 'Gama Baja', color: 'Blanco', pasajeros: 4, motor: 'V3', precioPorDia: 30, imagen: 'assets/img/cars_result_img/kia_soluto_mecanico.jpg' },
-    4: { nombre: 'Compacto y Práctico', color: 'Negro, Azul', pasajeros: 5, motor: '1.4', precioPorDia: 40, imagen: 'assets/img/cars_result_img/TOYOTA NEW ALLION.jpg' },
-    5: { nombre: 'SUV Familiar', color: 'Gris', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'assets/img/cars_result_img/Chery_Arrizo.jpg' },
-    6: { nombre: 'SUV otro', color: 'Verde', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'assets/img/cars_result_img/Toyota_New_Vitz.jpg' },
-    7: { nombre: 'SUV otroMas', color: 'Rojo', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'assets/img/cars_result_img/SsangYong_Tivoli.jpg' },
-    8: { nombre: 'SUV Lindo', color: 'Rosa', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'assets/img/cars_result_img/VW_T_CROSS_2025.jpg' },
-    9: { nombre: 'SUV Lindootro', color: 'Verde limón', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'assets/img/cars_result_img/NISSAN_KIKS.jpg' },
-    10: { nombre: 'SUV Lindomas', color: 'Gris', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'assets/img/cars_result_img/KIA_SPORTAGE_2025.jpg' },
-    11: { nombre: 'SUV Lindomaslindo', color: 'Rojo, Rosa', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'assets/img/cars_result_img/NISSAN_FRONTIER_2025.jpg' },
-    12: { nombre: 'SUV Lindocasiya', color: 'Negro, Rosa', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'assets/img/cars_result_img/MAZDA_BT50.jpg' },
-    13: { nombre: 'SUV Lindoultimo', color: 'Ámbar', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'assets/img/cars_result_img/HYUNDAI_H1.jpg' }
-};
+        document.querySelectorAll('.reservar-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const autoId = this.dataset.autoId;
+                const kilometraje = document.getElementById('resultado').dataset.kilometraje; // Obtener el kilometraje guardado
+                const dias = document.getElementById('resultado').dataset.dias; // Obtener los días guardados
 
-        const autoSeleccionado = autoDetalles[autoId];
-        const costoTotal = autoSeleccionado.precioPorDia * (kilometraje === 'ilimitado' ? 1.2 : 1) * dias;
+                const autoDetalles = {
+                    1: {
+                        nombre: 'Nissan Versa 2024',
+                        color: 'Negro',
+                        pasajeros: 5,
+                        motor: 'V6',
+                        precioPorDia: 100,
+                        imagen: 'assets/img/cars_result_img/nissan_versa_2024.jpg'
+                    },
+                    2: {
+                        nombre: 'Gama Media',
+                        color: 'Plateado',
+                        pasajeros: 4,
+                        motor: 'V4',
+                        precioPorDia: 70,
+                        imagen: 'assets/img/cars_result_img/kia_soluto_automatico.jpeg'
+                    },
+                    3: {
+                        nombre: 'Gama Baja',
+                        color: 'Blanco',
+                        pasajeros: 4,
+                        motor: 'V3',
+                        precioPorDia: 30,
+                        imagen: 'assets/img/cars_result_img/kia_soluto_mecanico.jpg'
+                    },
+                    4: {
+                        nombre: 'Compacto y Práctico',
+                        color: 'Negro, Azul',
+                        pasajeros: 5,
+                        motor: '1.4',
+                        precioPorDia: 40,
+                        imagen: 'assets/img/cars_result_img/TOYOTA NEW ALLION.jpg'
+                    },
+                    5: {
+                        nombre: 'SUV Familiar',
+                        color: 'Gris',
+                        pasajeros: 7,
+                        motor: '2.0',
+                        precioPorDia: 90,
+                        imagen: 'assets/img/cars_result_img/Chery_Arrizo.jpg'
+                    },
+                    6: {
+                        nombre: 'SUV otro',
+                        color: 'Verde',
+                        pasajeros: 7,
+                        motor: '2.0',
+                        precioPorDia: 90,
+                        imagen: 'assets/img/cars_result_img/Toyota_New_Vitz.jpg'
+                    },
+                    7: {
+                        nombre: 'SUV otroMas',
+                        color: 'Rojo',
+                        pasajeros: 7,
+                        motor: '2.0',
+                        precioPorDia: 90,
+                        imagen: 'assets/img/cars_result_img/SsangYong_Tivoli.jpg'
+                    },
+                    8: {
+                        nombre: 'SUV Lindo',
+                        color: 'Rosa',
+                        pasajeros: 7,
+                        motor: '2.0',
+                        precioPorDia: 90,
+                        imagen: 'assets/img/cars_result_img/VW_T_CROSS_2025.jpg'
+                    },
+                    9: {
+                        nombre: 'SUV Lindootro',
+                        color: 'Verde limón',
+                        pasajeros: 7,
+                        motor: '2.0',
+                        precioPorDia: 90,
+                        imagen: 'assets/img/cars_result_img/NISSAN_KIKS.jpg'
+                    },
+                    10: {
+                        nombre: 'SUV Lindomas',
+                        color: 'Gris',
+                        pasajeros: 7,
+                        motor: '2.0',
+                        precioPorDia: 90,
+                        imagen: 'assets/img/cars_result_img/KIA_SPORTAGE_2025.jpg'
+                    },
+                    11: {
+                        nombre: 'SUV Lindomaslindo',
+                        color: 'Rojo, Rosa',
+                        pasajeros: 7,
+                        motor: '2.0',
+                        precioPorDia: 90,
+                        imagen: 'assets/img/cars_result_img/NISSAN_FRONTIER_2025.jpg'
+                    },
+                    12: {
+                        nombre: 'SUV Lindocasiya',
+                        color: 'Negro, Rosa',
+                        pasajeros: 7,
+                        motor: '2.0',
+                        precioPorDia: 90,
+                        imagen: 'assets/img/cars_result_img/MAZDA_BT50.jpg'
+                    },
+                    13: {
+                        nombre: 'SUV Lindoultimo',
+                        color: 'Ámbar',
+                        pasajeros: 7,
+                        motor: '2.0',
+                        precioPorDia: 90,
+                        imagen: 'assets/img/cars_result_img/HYUNDAI_H1.jpg'
+                    }
+                };
 
-        document.getElementById('detalles').innerHTML = `
+                const autoSeleccionado = autoDetalles[autoId];
+                const costoTotal = autoSeleccionado.precioPorDia * (kilometraje === 'ilimitado' ? 1.2 : 1) * dias;
+
+                document.getElementById('detalles').innerHTML = `
             <h3>${autoSeleccionado.nombre}</h3>
             <img src="${autoSeleccionado.imagen}" alt="${autoSeleccionado.nombre}">
             <ul>
@@ -499,25 +624,27 @@ document.querySelectorAll('.reservar-btn').forEach(button => {
                 <li><strong>Costo Total:</strong> $${costoTotal.toFixed(2)}</li>
             </ul>
         `;
-        
-        // Mostrar la sección de reserva
-        document.getElementById('reserva').style.display = 'block';
 
-        // Scroll hacia la sección de reserva
-        document.getElementById('reserva').scrollIntoView({ behavior: 'smooth' });
-        
-        // Mostrar detalles del pedido al hacer clic en Reservar
-        document.getElementById('formReserva').onsubmit = function (e) {
-            e.preventDefault();
+                // Mostrar la sección de reserva
+                document.getElementById('reserva').style.display = 'block';
 
-            // Obtener los datos del formulario
-            const nombre = document.getElementById('nombre').value;
-            const direccion = document.getElementById('direccion').value;
-            const telefono = document.getElementById('telefono').value;
-            const formaPago = document.getElementById('formaPago').value;
+                // Scroll hacia la sección de reserva
+                document.getElementById('reserva').scrollIntoView({
+                    behavior: 'smooth'
+                });
 
-            // Mostrar detalles del pedido y datos del cliente
-            document.getElementById('informacion-cliente').innerHTML = `
+                // Mostrar detalles del pedido al hacer clic en Reservar
+                document.getElementById('formReserva').onsubmit = function(e) {
+                    e.preventDefault();
+
+                    // Obtener los datos del formulario
+                    const nombre = document.getElementById('nombre').value;
+                    const direccion = document.getElementById('direccion').value;
+                    const telefono = document.getElementById('telefono').value;
+                    const formaPago = document.getElementById('formaPago').value;
+
+                    // Mostrar detalles del pedido y datos del cliente
+                    document.getElementById('informacion-cliente').innerHTML = `
                 <h4>Información del Cliente</h4>
                 <ul>
                     <li><strong>Nombre:</strong> ${nombre}</li>
@@ -526,34 +653,50 @@ document.querySelectorAll('.reservar-btn').forEach(button => {
                     <li><strong>Forma de Pago:</strong> ${formaPago}</li>
                 </ul>
             `;
-            document.getElementById('detalles-pedido').style.display = 'block';
+                    document.getElementById('detalles-pedido').style.display = 'block';
 
-            // Scroll hacia la sección de detalles del pedido
-            document.getElementById('detalles-pedido').scrollIntoView({ behavior: 'smooth' });
-        };
-    });
-});
+                    // Scroll hacia la sección de detalles del pedido
+                    document.getElementById('detalles-pedido').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                };
+            });
+        });
 
-</script>
-    <script>
-        
+    </script>Script  -->
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", function() {
-    fetch('https://v6.exchangerate-api.com/v6/YOUR_API_KEY/latest/USD')
-    .then(response => response.json())
-    .then(data => {
-        // Obtén la tasa de cambio para PYG
-        const rate = data.conversion_rates.PYG;
-        document.getElementById('rate').textContent = rate;
-    })
-    .catch(error => {
-        console.error('Error al obtener la cotización del dólar:', error);
-    });
-});
+            fetch('https://v6.exchangerate-api.com/v6/YOUR_API_KEY/latest/USD')
+                .then(response => response.json())
+                .then(data => {
+                    // Obtén la tasa de cambio para PYG
+                    const rate = data.conversion_rates.PYG;
+                    document.getElementById('rate').textContent = rate;
+                })
+                .catch(error => {
+                    console.error('Error al obtener la cotización del dólar:', error);
+                });
+        });
 
-    
+    </script> -->
+
+    <script>
+        // Slide mini cotizador
+        document.addEventListener('DOMContentLoaded', () => {
+            let slider = document.querySelector('.slider');
+            let slides = document.querySelectorAll('.slide');
+            let currentIndex = 0;
+
+            setInterval(() => {
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % slides.length;
+                slides[currentIndex].classList.add('active');
+            }, 5000);
+        });
+
     </script>
-    
-    
+
+
     <div class="social-buttons">
         <!--<a href="https://facebook.com" target="_blank" class="social-button facebook"><i class="bi bi-facebook"></i></a>-->
         <!--<a href="https://twitter.com" target="_blank" class="social-button twitter"><i class="bi bi-twitter"></i></a>-->
