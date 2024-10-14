@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <base href="https://raw.githubusercontent.com/Elvitoca/cotizador/main/img/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent a Car WM - Alquiler de Autos</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        main {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin-bottom: 1rem;
+        }
+        h2 {
+            margin-top: 1.5rem;
+        }
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        #whatsapp {
+            background-color: #25D366;
+        }
+        #whatsapp:hover {
+            background-color: #128C7E;
+        }
+        #resultado, #reserva, #detalles-pedido {
+            margin-top: 2rem;
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border: 1px solid #ddd;
+        }
+        #resultado img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 1rem;
+        }
+        .buttons {
+            margin-top: 1rem;
+        }
+        
+       
+    </style>
+</head>
+<body>
+<header>
+ 
+    <h1>Cotizador Rent a Car WM by VC Web Designer 2024</h1>
+</header>
+<main>
+    <form id="cotizador">
+        <label for="fechaRetiro">Fecha de Retiro:</label>
+        <input type="date" id="fechaRetiro" required>
+
+        <label for="fechaEntrega">Fecha de Entrega:</label>
+        <input type="date" id="fechaEntrega" required>
+
+        <label for="kilometraje">Límite de Kilometraje:</label>
+        <select id="kilometraje" required>
+            <option value="limitado">120km por día</option>
+            <option value="ilimitado">Sin límite de km</option>
+        </select>
+
+        <button type="submit">Calcular Cotización</button>
+    </form>
+
+    <div id="resultado" style="display: none;">
+    <h2>Detalles de Autos Disponibles</h2>
+    <div class="auto" id="auto1">
+        <img src="alta.jpg" alt="Auto 1">
+        <h3>Gama Alta</h3>
+        <p>Costo: $100/día</p>
+        <p><strong>Color:</strong> Negro</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 5</p>
+        <p><strong>Motor:</strong> V6</p>
+        <button class="reservar-btn" data-auto-id="1">Hacer Reserva</button>
+    </div>
+    <div class="auto" id="auto2">
+        <img src="media.jpg" alt="Auto 2">
+        <h3>Gama Media</h3>
+        <p>Costo: $70/día</p>
+        <p><strong>Color:</strong> Plateado</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 4</p>
+        <p><strong>Motor:</strong> V4</p>
+        <button class="reservar-btn" data-auto-id="2">Hacer Reserva</button>
+    </div>
+    <div class="auto" id="auto3">
+        <img src="baja.jpg" alt="Auto 3">
+        <h3>Gama Baja</h3>
+        <p>Costo: $30/día</p>
+        <p><strong>Color:</strong> Blanco</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 4</p>
+        <p><strong>Motor:</strong> V3</p>
+        <button class="reservar-btn" data-auto-id="3">Hacer Reserva</button>
+    </div>
+
+    <!-- Nuevos Autos Agregados -->
+    <div class="auto" id="auto4">
+        <img src="compacto.jpg" alt="Auto 4">
+        <h3>Compacto y Práctico</h3>
+        <p>Costo: $40/día</p>
+        <p><strong>Color:</strong> Negro, Azul</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 5</p>
+        <p><strong>Motor:</strong> 1.4</p>
+        <button class="reservar-btn" data-auto-id="4">Hacer Reserva</button>
+    </div>
+    <div class="auto" id="auto5">
+        <img src="suv.jpg" alt="Auto 5">
+        <h3>SUV Familiar</h3>
+        <p>Costo: $90/día</p>
+        <p><strong>Color:</strong> Gris</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 7</p>
+        <p><strong>Motor:</strong> 2.0</p>
+        <button class="reservar-btn" data-auto-id="5">Hacer Reserva</button>
+    </div>
+    <div class="auto" id="auto6">
+        <img src="suv.jpg" alt="Auto 6">
+        <h3>SUV otro</h3>
+        <p>Costo: $90/día</p>
+        <p><strong>Color:</strong> Verde</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 7</p>
+        <p><strong>Motor:</strong> 2.0</p>
+        <button class="reservar-btn" data-auto-id="5">Hacer Reserva</button>
+    </div>
+    <div class="auto" id="auto7">
+        <img src="suv.jpg" alt="Auto 7">
+        <h3>SUV otroMas</h3>
+        <p>Costo: $90/día</p>
+        <p><strong>Color:</strong> Rojo</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 7</p>
+        <p><strong>Motor:</strong> 2.0</p>
+        <button class="reservar-btn" data-auto-id="5">Hacer Reserva</button>
+    </div>
+    
+<div class="auto" id="auto8">
+        <img src="suv.jpg" alt="Auto 8">
+        <h3>SUV Lindo</h3>
+        <p>Costo: $90/día</p>
+        <p><strong>Color:</strong> Rosa</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 7</p>
+        <p><strong>Motor:</strong> 2.0</p>
+        <button class="reservar-btn" data-auto-id="5">Hacer Reserva</button>
+    </div>
+    
+<div class="auto" id="auto9">
+        <img src="suv.jpg" alt="Auto 9">
+        <h3>SUV Lindootro</h3>
+        <p>Costo: $90/día</p>
+        <p><strong>Color:</strong> Verde limon</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 7</p>
+        <p><strong>Motor:</strong> 2.0</p>
+        <button class="reservar-btn" data-auto-id="5">Hacer Reserva</button>
+    </div>
+    
+<div class="auto" id="auto10">
+        <img src="suv.jpg" alt="Auto 10">
+        <h3>SUV Lindomas</h3>
+        <p>Costo: $90/día</p>
+        <p><strong>Color:</strong> Gris</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 7</p>
+        <p><strong>Motor:</strong> 2.0</p>
+        <button class="reservar-btn" data-auto-id="5">Hacer Reserva</button>
+    </div>
+    
+<div class="auto" id="auto11">
+        <img src="suv.jpg" alt="Auto 11">
+        <h3>SUV Lindomaslindo</h3>
+        <p>Costo: $90/día</p>
+        <p><strong>Color:</strong> Rojo, Rosa</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 7</p>
+        <p><strong>Motor:</strong> 2.0</p>
+        <button class="reservar-btn" data-auto-id="5">Hacer Reserva</button>
+    </div>
+    
+<div class="auto" id="auto12">
+        <img src="suv.jpg" alt="Auto 12">
+        <h3>SUV Lindocasiya</h3>
+        <p>Costo: $90/día</p>
+        <p><strong>Color:</strong> Negro, Rosa</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 7</p>
+        <p><strong>Motor:</strong> 2.0</p>
+        <button class="reservar-btn" data-auto-id="5">Hacer Reserva</button>
+    </div>
+    
+<div class="auto" id="auto13">
+        <img src="suv.jpg" alt="Auto 13">
+        <h3>SUV Lindoultimo</h3>
+        <p>Costo: $90/día</p>
+        <p><strong>Color:</strong> Ambar</p>
+        <p><strong>Cantidad de Pasajeros:</strong> 7</p>
+        <p><strong>Motor:</strong> 2.0</p>
+        <button class="reservar-btn" data-auto-id="5">Hacer Reserva</button>
+    </div>
+    <!-- Agregar más autos si es necesario -->
+</div>
+
+
+    <div id="reserva" style="display: none;">
+        <h2>Pedido de Reserva</h2>
+        <form id="formReserva">
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" required>
+
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" required>
+
+            <label for="formaPago">Forma de Pago:</label>
+            <select id="formaPago" required>
+                <option value="efectivo">Efectivo</option>
+                <option value="tarjeta">Tarjeta de Crédito</option>
+                <option value="transferencia">Transferencia Bancaria</option>
+            </select>
+
+            <div class="buttons">
+                <button type="submit">Reservar</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="detalles-pedido" style="display: none;">
+        <h2>Detalles del Pedido</h2>
+        <div id="detalles"></div>
+        <div id="informacion-cliente"></div> <!-- Para mostrar los datos del cliente -->
+        <button id="confirmar-btn">Confirmar</button>
+        <button id="descargar-pdf-btn">Descargar PDF</button>
+    </div>
+
+   
+</main>
+
+<script>
+    document.getElementById('cotizador').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const fechaRetiro = new Date(document.getElementById('fechaRetiro').value);
+    const fechaEntrega = new Date(document.getElementById('fechaEntrega').value);
+    
+    if (fechaEntrega <= fechaRetiro) {
+        alert("La fecha de entrega debe ser posterior a la fecha de retiro.");
+        return;
+    }
+
+    const kilometraje = document.getElementById('kilometraje').value;
+    const dias = Math.ceil((fechaEntrega - fechaRetiro) / (1000 * 60 * 60 * 24));
+
+    // Mostrar el resultado de los autos disponibles
+    document.getElementById('resultado').style.display = 'block';
+    document.getElementById('resultado').dataset.kilometraje = kilometraje; // Guardar el kilometraje para usar después
+    document.getElementById('resultado').dataset.dias = dias; // Guardar los días para usar después
+
+    // Scroll hacia la sección de resultados
+    document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
+});
+
+document.querySelectorAll('.reservar-btn').forEach(button => {
+    button.addEventListener('click', function () {
+        const autoId = this.dataset.autoId;
+        const kilometraje = document.getElementById('resultado').dataset.kilometraje; // Obtener el kilometraje guardado
+        const dias = document.getElementById('resultado').dataset.dias; // Obtener los días guardados
+
+        const autoDetalles = {
+    1: { nombre: 'Gama Alta', color: 'Negro', pasajeros: 5, motor: 'V6', precioPorDia: 100, imagen: 'alta.jpg' },
+    2: { nombre: 'Gama Media', color: 'Plateado', pasajeros: 4, motor: 'V4', precioPorDia: 70, imagen: 'media.jpg' },
+    3: { nombre: 'Gama Baja', color: 'Blanco', pasajeros: 4, motor: 'V3', precioPorDia: 30, imagen: 'baja.jpg' },
+    4: { nombre: 'Compacto y Práctico', color: 'Negro, Azul', pasajeros: 5, motor: '1.4', precioPorDia: 40, imagen: 'compacto.jpg' },
+    5: { nombre: 'SUV Familiar', color: 'Gris', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'suv.jpg' },
+    6: { nombre: 'SUV otro', color: 'Verde', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'suv.jpg' },
+    7: { nombre: 'SUV otroMas', color: 'Rojo', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'suv.jpg' },
+    8: { nombre: 'SUV Lindo', color: 'Rosa', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'suv.jpg' },
+    9: { nombre: 'SUV Lindootro', color: 'Verde limón', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'suv.jpg' },
+    10: { nombre: 'SUV Lindomas', color: 'Gris', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'suv.jpg' },
+    11: { nombre: 'SUV Lindomaslindo', color: 'Rojo, Rosa', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'suv.jpg' },
+    12: { nombre: 'SUV Lindocasiya', color: 'Negro, Rosa', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'suv.jpg' },
+    13: { nombre: 'SUV Lindoultimo', color: 'Ámbar', pasajeros: 7, motor: '2.0', precioPorDia: 90, imagen: 'suv.jpg' }
+};
+
+
+        const autoSeleccionado = autoDetalles[autoId];
+        const costoTotal = autoSeleccionado.precioPorDia * (kilometraje === 'ilimitado' ? 1.2 : 1) * dias;
+
+        document.getElementById('detalles').innerHTML = `
+            <h3>${autoSeleccionado.nombre}</h3>
+            <img src="${autoSeleccionado.imagen}" alt="${autoSeleccionado.nombre}">
+            <ul>
+                <li><strong>Color:</strong> ${autoSeleccionado.color}</li>
+                <li><strong>Cantidad de Pasajeros:</strong> ${autoSeleccionado.pasajeros}</li>
+                <li><strong>Motor:</strong> ${autoSeleccionado.motor}</li>
+                <li><strong>Costo Total:</strong> $${costoTotal.toFixed(2)}</li>
+            </ul>
+        `;
+        
+        // Mostrar la sección de reserva
+        document.getElementById('reserva').style.display = 'block';
+
+        // Scroll hacia la sección de reserva
+        document.getElementById('reserva').scrollIntoView({ behavior: 'smooth' });
+        
+        // Mostrar detalles del pedido al hacer clic en Reservar
+        document.getElementById('formReserva').onsubmit = function (e) {
+            e.preventDefault();
+
+            // Obtener los datos del formulario
+            const nombre = document.getElementById('nombre').value;
+            const direccion = document.getElementById('direccion').value;
+            const telefono = document.getElementById('telefono').value;
+            const formaPago = document.getElementById('formaPago').value;
+
+            // Mostrar detalles del pedido y datos del cliente
+            document.getElementById('informacion-cliente').innerHTML = `
+                <h4>Información del Cliente</h4>
+                <ul>
+                    <li><strong>Nombre:</strong> ${nombre}</li>
+                    <li><strong>Dirección:</strong> ${direccion}</li>
+                    <li><strong>Teléfono:</strong> ${telefono}</li>
+                    <li><strong>Forma de Pago:</strong> ${formaPago}</li>
+                </ul>
+            `;
+            document.getElementById('detalles-pedido').style.display = 'block';
+
+            // Scroll hacia la sección de detalles del pedido
+            document.getElementById('detalles-pedido').scrollIntoView({ behavior: 'smooth' });
+        };
+    });
+});
+
+</script>
+
+</body>
+</html>
+
+
